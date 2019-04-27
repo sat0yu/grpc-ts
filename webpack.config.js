@@ -1,9 +1,11 @@
 const webpack = require("webpack");
 const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
   mode: "development",
   target: "node",
+  externals: [nodeExternals()],
   devtool: "inline-source-map",
   entry: path.resolve(__dirname, "server.ts"),
   output: {
