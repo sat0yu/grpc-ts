@@ -4,7 +4,8 @@
   "description": "build typescript gRPC environment",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "update_proto": "./scripts/update_proto"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,17 @@
   },
   "homepage": "https://github.com/sat0yu/grpc-ts#readme",
   "devDependencies": {
+    "@types/google-protobuf": "^3.2.7",
+    "google-protobuf": "^3.7.1",
+    "grpc-tools": "^1.7.3",
+    "grpc_tools_node_protoc_ts": "^2.5.0",
     "ts-loader": "^5.4.4",
+    "ts-protoc-gen": "^0.9.0",
     "typescript": "^3.4.5",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1"
+  },
+  "dependencies": {
+    "grpc": "^1.20.0"
   }
 }

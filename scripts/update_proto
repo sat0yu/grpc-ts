@@ -1,0 +1,21 @@
+#!/bin/bash -exu
+
+NODE_MODEULES=./node_modules
+PROTOC_GEN_TS=${NODE_MODEULES}/.bin/protoc-gen-ts
+PROTOC_GEN_GRPC=${NODE_MODEULES}/.bin/grpc_tools_node_protoc_plugin
+OUTPUT_DIR=./protos
+
+# generate js codes via grpc-tools
+${NODE_MODEULES}/.bin/grpc_tools_node_protoc \
+  --plugin=protoc-gen-grpc="${PROTOC_GEN_GRPC}" \
+  --js_out=import_style=commonjs,binary:"${OUTPUT_DIR}" \
+  --grpc_out="${OUTPUT_DIR}" \
+  -I=./protos \
+  protos/*.proto
+
+# generate d.ts codes
+protoc \
+  --plugin=protoc-gen-ts="${PROTOC_GEN_TS}" \
+  --ts_out=import_style=commonjs,binary:"${OUTPUT_DIR}" \
+  -I=./protos \
+  protos/*.proto
